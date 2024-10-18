@@ -1,7 +1,9 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import * as styles from "./index.module.less";
 import TestCssModule from "./components/TestCssModule";
+import TestPxtovw from "@/components/TestPxtovw";
 import "./app.css";
+import "@/assets/style/index.less";
 
 // prefetch
 const PreFetchDemo = lazy(
@@ -39,6 +41,7 @@ function App() {
         展示
       </h2>
       <TestCssModule />
+      <TestPxtovw />
       {/* show为true时加载组件 */}
       {show && (
         <>
