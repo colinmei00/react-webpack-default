@@ -1,4 +1,7 @@
-import React, { lazy, Suspense, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
+import * as styles from "./index.module.less";
+import TestCssModule from "./components/TestCssModule";
+import "./app.css";
 
 // prefetch
 const PreFetchDemo = lazy(
@@ -22,12 +25,20 @@ const PreloadDemo = lazy(
 function App() {
   const [show, setShow] = useState(false);
 
+  useEffect(() => {
+    console.log("===", styles);
+  }, []);
+
   const onClick = () => {
     setShow(true);
   };
   return (
-    <>
-      <h2 onClick={onClick}>展示</h2>
+    <div>
+      <h2 className="ssss">app的ssss</h2>
+      <h2 onClick={onClick} className={styles.title}>
+        展示
+      </h2>
+      <TestCssModule />
       {/* show为true时加载组件 */}
       {show && (
         <>
@@ -39,7 +50,7 @@ function App() {
           </Suspense>
         </>
       )}
-    </>
+    </div>
   );
 }
 export default App;

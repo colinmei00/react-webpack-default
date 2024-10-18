@@ -25,19 +25,34 @@ module.exports = merge(baseConfig, {
         },
       ],
     }),
+    /**
+     * 将项目的css抽离成文件然后http请求引入
+     * 适合于生产模式：因为不会频繁修改样式，可以利用缓存加速访问；
+     * 不适合开发环境：样式改动频繁，用style-loader更佳有热替换功能(修改css不会导致浏览器自动刷新)；
+     */
     new MiniCssExtractPlugin({
       filename: "static/css/[name].[contenthash:8].css", // 抽离css的输出目录和名称
     }),
-    // 清理无用css
+    /**
+     * 清理无用css(类似tree-shaking)，如果打包后样式问题多，可以删除该优化插件，删除后其实影响不大；
+     * TODO: (问题)开启css moudle后tsx引入并使用了less中的样式，打包还是会被删除；
+     * 在webpack.base.js中给类名加了custom__前缀，配合白名单使用防止被删除；
+     */
     new PurgeCSSPlugin({
-      // 检测src下所有tsx文件和public下index.html中使用的类名和id和标签名称
-      // 只打包这些文件中用到的样式
+      /**
+       * 检测src下所有tsx文件和public下index.html中使用的类名和id和标签名称
+       * 只打包这些文件中用到的样式
+       */
       paths: globAll.sync([
         `${path.join(__dirname, "../src")}/**/*.tsx`,
         path.join(__dirname, "../public/index.html"),
       ]),
       safelist: {
-        standard: [/^ant-/], //  TODO: 用于配置组件库白名单，这里拿antd举例，避免使用到的antd组件类名被过滤
+        /**
+         * 配置白名单，可以忽略custom__开头的类名；(防止tsx引入的less被删除)
+         * 可用于配置组件库样式白名单，详情看掘金收藏；
+         */
+        standard: [/^custom__/],
       },
     }),
     new CompressionPlugin({
