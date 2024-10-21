@@ -83,6 +83,18 @@ module.exports = {
             loader: "less-loader",
             options: {
               sourceMap: !isProd,
+              /**
+               * 给所有less文件注入var和func，复用变量和函数
+               */
+              additionalData:
+                `@import "${path.resolve(
+                  __dirname,
+                  "../src/assets/style/var.less"
+                )}";\n` +
+                `@import "${path.resolve(
+                  __dirname,
+                  "../src/assets/style/func.less"
+                )}";\n`,
             },
           },
         ],

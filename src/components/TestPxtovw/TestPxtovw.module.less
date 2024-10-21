@@ -1,7 +1,22 @@
+// 想要用字体或者函数变量等，就需要引入，因为less-loader不支持配置给每个less文件导入全局less文件
+
 .container {
   section {
+    .border-bottom(red);
+    
     width: 100px;
     height: 100px;
-    background-color: aqua;
+    background-color: @yellow;
+
+    span {
+      &:first-of-type {
+        .regular(23px, @black);
+
+      }
+
+      &:last-of-type {
+        .aaa(23px, @black);
+      }
+    }
   }
 }

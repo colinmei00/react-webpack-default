@@ -1,0 +1,146 @@
+/**
+ * 字体设置
+ */
+.regular(@size, @color) {
+  color: @color;
+  font-weight: 400;
+  font-size: @size;
+  font-family: TW-Medium;
+  line-height: @size;
+}
+
+.aaa(@size, @color) {
+  color: @color;
+  font-weight: 400;
+  font-size: @size;
+  line-height: @size;
+}
+
+/**
+ * 背景图片的拼接cdn
+ */
+.bg-image(@url) {
+  background-image: url('https://bhb-frontend.bhbcdn.com/static/files/toc/images/@{url}');
+}
+
+/**
+ * 1px细线 - 下边线
+ */
+.border-bottom(@color) {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    overflow: hidden;
+    border-bottom: 1px solid @color;
+    transform: scaleY(0.5);
+    transform-origin: 0 0;
+    content: '\0020';
+  }
+}
+
+/**
+ * 1px细线 - 上边线
+ */
+.border-top(@color) {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    overflow: hidden;
+    border-top: 1px solid @color;
+    transform: scaleY(0.5);
+    transform-origin: 0 0;
+    content: '\0020';
+  }
+}
+
+/**
+ * 1px细线 - 左边线
+ */
+.border-left(@color) {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    overflow: hidden;
+    border-left: 1px solid @color;
+    transform: scaleX(0.5);
+    transform-origin: 0 0;
+    content: '\0020';
+  }
+}
+
+/**
+ * 1px细线 - 右边线
+ */
+.border-right(@color) {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    overflow: hidden;
+    border-right: 1px solid @color;
+    transform: scaleX(0.5);
+    transform-origin: 0 0;
+    content: '\0020';
+  }
+}
+
+.border-1px(@color) {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    overflow: hidden;
+    border: 1px solid @color;
+    transform: scaleY(0.5);
+    transform-origin: 0 0;
+    content: '\0020';
+  }
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap; //文本不会换行
+  text-overflow: ellipsis; //文本溢出显示省略号
+}
+
+.user-select {
+  -webkit-user-select: none; /* 防止文本被选中，适用于 Webkit 内核浏览器 */
+  user-select: none; /* 防止文本被选中，通用属性 */
+}
+
+.user-select-pointer {
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.inner-scroll-height(@margin) {
+  /* stylelint-disable-next-line function-no-unknown */
+  height: calc(100vh - @margin - constant(safe-area-inset-bottom));
+  height: calc(100vh - @margin - env(safe-area-inset-bottom));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* 禁用回弹效果 */
+}
