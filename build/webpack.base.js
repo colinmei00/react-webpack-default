@@ -8,6 +8,31 @@ const isProd = process.env.NODE_ENV === "production"; // 是否为生产模式
 console.log("NODE_ENV===>", process.env.NODE_ENV);
 console.log("BASE_ENV===>", process.env.BASE_ENV);
 
+const getCssLoaders = (importLoaders) => [
+  isProd ? MiniCssExtractPlugin.loader : "style-loader",
+  {
+    loader: "css-loader", // 主要是解析css文件中的@import和url语句，处理css-modules，并将结果作为一个js模块返回
+    options: {
+      //  modules默认值undefined: 为所有匹配 /\.module\.\w+$/i.test(filename) 与 /\.icss\.\w+$/i.test(filename) 正则表达式的文件启用 CSS 模块
+      //  详情参考 https://webpack.docschina.org/loaders/css-loader/
+      modules: {
+        auto: true,
+        /**
+         * 开发环境需要看类名快速定位文件与位置
+         * 生产环境不希望暴露源码，所以使用hash值，
+         * 加custom__前缀防止被purgecssplugin删除，如果不用其插件可以不加前缀
+         */
+        localIdentName: isProd
+          ? "custom__[hash:base64]"
+          : "[local]__[hash:base64:5]",
+      }, // undefined / true / false / string / object
+      sourceMap: !isProd,
+      importLoaders, // 执行顺序: 需要先被 less-loader postcss-loader (所以这里设置为 2)
+    },
+  },
+  "postcss-loader",
+];
+
 module.exports = {
   entry: path.join(__dirname, "../src/index.tsx"), // 入口文件
   output: {
@@ -37,48 +62,13 @@ module.exports = {
          * [path.resolve(__dirname, '../src')，path.resolve('../node_modules/driver.js/dist/driver.css')]
          */
         include: [path.resolve(__dirname, "../src")],
-        use: [
-          isProd ? MiniCssExtractPlugin.loader : "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              modules: {
-                auto: true,
-                localIdentName: isProd
-                  ? "custom__[hash:base64]"
-                  : "[path][name]__[local]",
-              },
-              importLoaders: 1,
-            },
-          },
-          "postcss-loader",
-        ],
+        use: getCssLoaders(1),
       },
       {
         test: /\.less$/,
         include: [path.resolve(__dirname, "../src")],
         use: [
-          isProd ? MiniCssExtractPlugin.loader : "style-loader",
-          {
-            loader: "css-loader", // 主要是解析css文件中的@import和url语句，处理css-modules，并将结果作为一个js模块返回
-            options: {
-              //  modules默认值undefined: 为所有匹配 /\.module\.\w+$/i.test(filename) 与 /\.icss\.\w+$/i.test(filename) 正则表达式的文件启用 CSS 模块
-              //  详情参考 https://webpack.docschina.org/loaders/css-loader/
-              modules: {
-                auto: true,
-                /**
-                 * 开发环境需要看类名快速定位文件与位置
-                 * 生产环境不希望暴露源码，所以使用hash值，
-                 * 加custom__前缀防止被purgecssplugin删除，如果不用其插件可以不加前缀
-                 */
-                localIdentName: isProd
-                  ? "custom__[hash:base64]"
-                  : "[path][name]__[local]",
-              }, // undefined / true / false / string / object
-              importLoaders: 2, // 执行顺序: 需要先被 less-loader postcss-loader (所以这里设置为 2)
-            },
-          },
-          "postcss-loader",
+          ...getCssLoaders(2),
           {
             loader: "less-loader",
             options: {
