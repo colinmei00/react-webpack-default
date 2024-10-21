@@ -13,7 +13,8 @@
     "build:test": "cross-env NODE_ENV=production BASE_ENV=test webpack -c build/webpack.prod.js",
     "build:pre": "cross-env NODE_ENV=production BASE_ENV=pre webpack -c build/webpack.prod.js",
     "build": "cross-env NODE_ENV=production BASE_ENV=production webpack -c build/webpack.prod.js",
-    "build:analy": "cross-env NODE_ENV=production BASE_ENV=production webpack -c build/webpack.analy.js"
+    "build:analy": "cross-env NODE_ENV=production BASE_ENV=production webpack -c build/webpack.analy.js",
+    "commit": "cz"
   },
   "keywords": [],
   "author": "",
@@ -28,12 +29,14 @@
     "@types/react-dom": "^18.3.1",
     "autoprefixer": "^10.4.20",
     "babel-loader": "^9.2.1",
+    "commitizen": "^4.3.1",
     "compression-webpack-plugin": "^11.1.0",
     "copy-webpack-plugin": "^12.0.2",
     "core-js": "^3.38.1",
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
+    "cz-conventional-changelog": "^3.3.0",
     "glob-all": "^3.3.1",
     "html-webpack-plugin": "^5.6.0",
     "less": "^4.2.0",
@@ -58,5 +61,10 @@
     "purgecss-webpack-plugin": "^6.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
