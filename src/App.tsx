@@ -1,9 +1,10 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
-import * as styles from "./index.module.less";
-import TestCssModule from "./components/TestCssModule";
-import TestPxtovw from "@/components/TestPxtovw";
-import "./app.css";
-import "@/assets/style/index.less";
+import React, { lazy, Suspense, useEffect, useState } from 'react';
+import * as styles from './index.module.less';
+import TestCssModule from './components/TestCssModule';
+import TestPxtovw from '@/components/TestPxtovw';
+import './app.css';
+import '@/assets/style/index.less';
+import { Button } from 'antd-mobile';
 
 // prefetch
 const PreFetchDemo = lazy(
@@ -11,7 +12,7 @@ const PreFetchDemo = lazy(
     import(
       /* webpackChunkName: "PreFetchDemo" */
       /*webpackPrefetch: true*/
-      "@/components/PreFetchDemo"
+      '@/components/PreFetchDemo'
     )
 );
 // preload
@@ -20,7 +21,7 @@ const PreloadDemo = lazy(
     import(
       /* webpackChunkName: "PreloadDemo" */
       /*webpackPreload: true*/
-      "@/components/PreloadDemo"
+      '@/components/PreloadDemo'
     )
 );
 
@@ -28,7 +29,7 @@ function App() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    console.log("===", styles);
+    console.log('===', styles);
   }, []);
 
   const onClick = () => {
@@ -40,6 +41,7 @@ function App() {
       <h2 onClick={onClick} className={styles.title}>
         展示
       </h2>
+      <Button color="success">按钮</Button>
       <TestCssModule />
       <TestPxtovw />
       {/* show为true时加载组件 */}
