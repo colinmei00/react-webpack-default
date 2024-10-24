@@ -1,1 +1,1 @@
-export { default } from "./TestCssModule";
+export { default } from './TestCssModule';

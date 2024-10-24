@@ -1,1 +1,1 @@
-export { default } from "./TestPxtovw";
+export { default } from './TestPxtovw';
