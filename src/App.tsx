@@ -29,7 +29,7 @@ function App() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    console.log('===', styles);
+    console.log('====', styles);
   }, []);
 
   const onClick = () => {
