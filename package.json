@@ -16,7 +16,8 @@
     "build:analy": "cross-env NODE_ENV=production BASE_ENV=production webpack -c build/webpack.analy.js",
     "commit": "cz",
     "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,8 @@
     "@babel/preset-env": "^7.25.8",
     "@babel/preset-react": "^7.25.7",
     "@babel/preset-typescript": "^7.25.7",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
     "@eslint/js": "^10.0.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
     "@types/react": "^18.3.11",
@@ -47,8 +50,10 @@
     "glob-all": "^3.3.1",
     "globals": "^15.11.0",
     "html-webpack-plugin": "^5.6.0",
+    "husky": "^8.0.0",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
+    "lint-staged": "^15.2.10",
     "mini-css-extract-plugin": "^2.9.1",
     "postcss-loader": "^8.1.1",
     "postcss-px-to-viewport-8-plugin": "^1.2.5",
@@ -77,5 +82,10 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,jsx,tsx}": [
+      "npm run lint"
+    ]
   }
 }

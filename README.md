@@ -21,3 +21,7 @@ node版本18.20.0及以上否则eslint会报错
 ### eslint + prettier 配置:
 
 > https://juejin.cn/post/7402696141495779363
+
+### husky + lint-staged + commitlint 配置:
+
+> https://juejin.cn/post/7245674094493171770
