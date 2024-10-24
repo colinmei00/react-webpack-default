@@ -6,7 +6,9 @@ function TestCssModule() {
     <div>
       <div className="ssss">123213</div>
       <div className={styles.title} id={styles.new}>
-        我是title
+        <div className={styles.aaa}>
+          <span>我是title</span>
+        </div>
       </div>
     </div>
   );

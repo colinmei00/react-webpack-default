@@ -20,10 +20,10 @@ const getCssLoaders = importLoaders => [
         /**
          * 开发环境需要看类名快速定位文件与位置
          * 生产环境不希望暴露源码，所以使用hash值，
-         * 加custom__前缀防止被purgecssplugin删除，如果不用其插件可以不加前缀
+         * 加css__module__前缀防止被purgecssplugin删除，如果不用其插件可以不加前缀
          */
         localIdentName: isProd
-          ? 'custom__[hash:base64]'
+          ? 'css__module__[hash:base64]'
           : '[local]__[hash:base64:5]',
       }, // undefined / true / false / string / object
       sourceMap: !isProd,

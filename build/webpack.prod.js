@@ -36,7 +36,7 @@ module.exports = merge(baseConfig, {
     /**
      * 清理无用css(类似tree-shaking)，如果打包后样式问题多，可以删除该优化插件，删除后其实影响不大；
      * TODO: (问题)开启css moudle后tsx引入并使用了less中的样式，打包还是会被删除；
-     * 在webpack.base.js中给类名加了custom__前缀，配合白名单使用防止被删除；
+     * 在webpack.base.js中给类名加了css__module__前缀，配合白名单使用防止被删除；
      */
     new PurgeCSSPlugin({
       /**
@@ -49,10 +49,12 @@ module.exports = merge(baseConfig, {
       ]),
       safelist: {
         /**
-         * 配置白名单，可以忽略custom__开头的类名；(防止tsx引入的less被删除)
+         * 配置白名单，可以忽略css__module__开头的类名；(防止tsx引入的less被删除)
          * 可用于配置组件库样式白名单，详情看掘金收藏:https://juejin.cn/post/7111922283681153038
+         * 打包后样式丢失问题可以看https://www.cnblogs.com/llcdbk/p/16613092.html
          */
-        standard: [/^custom__/, /^adm-/],
+        standard: [/^adm-/],
+        deep: [/css__module__/],
       },
     }),
     new CompressionPlugin({
