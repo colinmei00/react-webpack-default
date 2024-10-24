@@ -15,9 +15,16 @@
     "build": "cross-env NODE_ENV=production BASE_ENV=production webpack -c build/webpack.prod.js",
     "build:analy": "cross-env NODE_ENV=production BASE_ENV=production webpack -c build/webpack.analy.js",
     "commit": "cz",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "check-type": "tsc --noemit",
+    "lint": "npm run check-type && npm run lint:es && npm run lint:style && npm run lint:prettier || exit 1",
+    "lint:es": "eslint . --cache",
+    "lint:style": "stylelint \"**/*.{css,less}\" --cache",
+    "lint:prettier": "prettier --list-different \"**/*.{ts,tsx,js,jsx,css,less,json,yml,yaml,md,mdx}\"",
+    "fix": "npm run fix:es && npm run fix:style && npm run fix:prettier || exit 1",
+    "fix:es": "eslint . --fix --cache",
+    "fix:style": "stylelint \"**/*.{css,less}\" --cache --fix",
+    "fix:prettier": "prettier --write \"**/*.{ts,tsx,js,jsx,css,less,json,yml,yaml,md,mdx}\" --cache"
   },
   "keywords": [],
   "author": "",
@@ -55,12 +62,18 @@
     "less-loader": "^12.2.0",
     "lint-staged": "^15.2.10",
     "mini-css-extract-plugin": "^2.9.1",
+    "postcss-less": "^6.0.0",
     "postcss-loader": "^8.1.1",
     "postcss-px-to-viewport-8-plugin": "^1.2.5",
     "prettier": "^3.3.3",
     "react-refresh": "^0.14.2",
     "speed-measure-webpack-plugin": "^1.5.0",
     "style-loader": "^4.0.0",
+    "stylelint": "^16.10.0",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^36.0.1",
+    "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
+    "stylelint-order": "^6.0.4",
     "terser-webpack-plugin": "^5.3.10",
     "thread-loader": "^4.0.4",
     "ts-loader": "^9.5.1",
@@ -85,7 +98,13 @@
   },
   "lint-staged": {
     "src/**/*.{js,ts,jsx,tsx}": [
-      "npm run lint"
+      "npm run lint:es"
+    ],
+    "*.{css,less,scss}": [
+      "npm run lint:style"
+    ],
+    "*.{ts,tsx,js,json,html,yml,css,less,scss,md}": [
+      "prettier --list-different"
     ]
   }
 }

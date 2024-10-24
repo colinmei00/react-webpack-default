@@ -45,6 +45,14 @@ export default tseslint.config(
    * prettier 配置
    * 会合并根目录下的prettier.config.js 文件
    * @see https://prettier.io/docs/en/options
+   * 如果该方法还是会造成eslint和prettier冲突，请使用下方extends配置
    */
   eslintPluginPrettierRecommended
+  // {
+  //   extends: [
+  //     'standard-with-typescript',
+  //     'plugin:react/recommended',
+  //     'prettier',
+  //   ],
+  // }
 );
