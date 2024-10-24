@@ -6,7 +6,17 @@ import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 
 export default tseslint.config(
   {
-    ignores: ['node_modules', 'dist', 'public'],
+    ignores: [
+      'node_modules',
+      'dist',
+      'public',
+      'package-lock.json',
+      'scripts',
+      'src/utils/*.js',
+      '.vscode',
+      '.stylelintcache',
+      '.eslintcache',
+    ],
   },
   /**
    * 配置全局变量
