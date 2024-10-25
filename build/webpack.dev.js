@@ -20,6 +20,8 @@ module.exports = merge(baseConfig, {
     static: {
       directory: path.join(__dirname, '../public'), //托管静态资源public文件夹
     },
+    /** 自动打开浏览器，需要node版本18.20.0以上 */
+    open: true,
   },
   plugins: [new ReactRefreshWebpackPlugin()],
 });
