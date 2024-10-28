@@ -4,6 +4,10 @@ import TestCssModule from '@/components/TestCssModule';
 import TestPxtovw from '@/components/TestPxtovw';
 import '@/assets/style/index.less';
 import { Button } from 'antd-mobile';
+/**
+ * 第二种引入store方式，直接引入
+ */
+import testStore from '@/store/Test';
 
 // prefetch
 const PreFetchDemo = lazy(
@@ -37,7 +41,7 @@ function Content() {
   return (
     <div>
       <h2 onClick={onClick} className={styles.title}>
-        展示
+        展示{testStore.store.text}
       </h2>
       <Button color="success">按钮</Button>
       <TestCssModule />
