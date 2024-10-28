@@ -1,23 +1,56 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
-    "skipLibCheck": false,
-    "esModuleInterop": false,
+    "target": "esnext",
+    "noEmit": true, // 不输出, 不编译代码，只执行类型检查, 不生成输出文件
+    "useDefineForClassFields": true,
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES5",
+      "ES2015",
+      "ES2016",
+      "ES2017",
+      "ES2018",
+      "ES2019",
+      "ES2020",
+      "ESNext"
+    ],
+    "allowJs": true,
+    "checkJs": true,
+    "composite": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "allowUnreachableCode": false,
+    "baseUrl": "./",
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react", // react18这里也可以改成react-jsx
-    "baseUrl": ".",
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "newLine": "lf",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "pretty": true,
+    "resolveJsonModule": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "types": ["@types/node"]
   },
-  "include": ["./src", "lib.d.ts"]
+  "include": ["src", "lib.d.ts", "config/config.json", "src/**/*.json"],
+  "exclude": ["node_modules", "dist"]
 }

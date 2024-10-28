@@ -1,4 +1,6 @@
-// 是否是开发模式
+/**
+ * 是否为本地运行npm run dev
+ */
 const isDEV = process.env.NODE_ENV === 'development';
 
 module.exports = {
