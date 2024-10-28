@@ -7,11 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=development BASE_ENV=development webpack-dev-server -c build/webpack.dev.js",
     "dev:test": "cross-env NODE_ENV=development BASE_ENV=test webpack-dev-server -c build/webpack.dev.js",
-    "dev:pre": "cross-env NODE_ENV=development BASE_ENV=pre webpack-dev-server -c build/webpack.dev.js",
+    "dev:gray": "cross-env NODE_ENV=development BASE_ENV=gray webpack-dev-server -c build/webpack.dev.js",
     "dev:prod": "cross-env NODE_ENV=development BASE_ENV=production webpack-dev-server -c build/webpack.dev.js",
     "build:dev": "cross-env NODE_ENV=production BASE_ENV=development webpack -c build/webpack.prod.js",
     "build:test": "cross-env NODE_ENV=production BASE_ENV=test webpack -c build/webpack.prod.js",
-    "build:pre": "cross-env NODE_ENV=production BASE_ENV=pre webpack -c build/webpack.prod.js",
+    "build:gray": "cross-env NODE_ENV=production BASE_ENV=gray webpack -c build/webpack.prod.js",
     "build": "cross-env NODE_ENV=production BASE_ENV=production webpack -c build/webpack.prod.js",
     "build:analy": "cross-env NODE_ENV=production BASE_ENV=production webpack -c build/webpack.analy.js",
     "commit": "cz",
@@ -38,6 +38,7 @@
     "@commitlint/config-conventional": "^19.5.0",
     "@eslint/js": "^10.0.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
+    "@types/md5": "^2.3.5",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
     "autoprefixer": "^10.4.20",
@@ -50,6 +51,7 @@
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
     "cz-conventional-changelog": "^3.3.0",
+    "dotenv": "^16.4.5",
     "eruda": "^3.4.0",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
@@ -88,9 +90,14 @@
   },
   "dependencies": {
     "antd-mobile": "^5.37.1",
+    "axios": "^1.7.7",
+    "classnames": "^2.5.1",
+    "md5": "^2.3.0",
+    "mobx": "^6.13.5",
     "purgecss-webpack-plugin": "^6.0.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0"
   },
   "config": {
     "commitizen": {
@@ -105,7 +112,7 @@
       "npm run lint:style"
     ],
     "*.{ts,tsx,js,json,html,yml,css,less,scss,md}": [
-      "prettier --list-different"
+      "prettier --write"
     ]
   }
 }

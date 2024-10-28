@@ -1,9 +1,22 @@
-// webpack.base.js
+/**
+ * dotenv作用是从.env文件中加载环境变量到Node.js应用的process.env对象中
+ * 以下配置可以根据不同的环境加载不同的.env文件，然后注入不同环境的API_URL到process.env
+ * 如果想要在项目任意位置访问process.env.API_URL，需要使用DefinePlugin定义
+ */
+require('dotenv').config({ path: `.env.${process.env.BASE_ENV}` });
+
+/**
+ * NODE_ENV：决定是npm run dev还是npm run build
+ * BASE_ENV：决定当前是什么环境从而调用对于环境的api接口地址
+ */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const isProd = process.env.NODE_ENV === 'production'; // 是否为生产模式
+/**
+ * 是否为打包dist文件
+ */
+const isProd = process.env.NODE_ENV === 'production';
 
 console.log('NODE_ENV===>', process.env.NODE_ENV);
 console.log('BASE_ENV===>', process.env.BASE_ENV);
@@ -142,8 +155,13 @@ module.exports = {
       template: path.resolve(__dirname, '../public/index.html'), // 模板取定义root节点的模板
       inject: true, // 自动注入静态资源
     }),
+    /**
+     * 没有定义NODE_ENV和BASE_ENV 为什么在tsx中NODE_ENV能访问BASE_ENV却不能访问
+     * NODE_ENV 是一个特殊的环境变量，通常由许多工具和库默认识别和使用。
+     * 这种广泛的支持意味着即使你没有在 DefinePlugin 中显式定义 NODE_ENV，它仍然可能被构建工具自动处理并注入到你的客户端代码中
+     */
     new webpack.DefinePlugin({
-      'process.env.BASE_ENV': JSON.stringify(process.env.BASE_ENV),
+      'process.env.API_URL': JSON.stringify(process.env.API_URL),
     }),
   ],
   cache: {

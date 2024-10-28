@@ -21,7 +21,11 @@ module.exports = merge(baseConfig, {
       directory: path.join(__dirname, '../public'), //托管静态资源public文件夹
     },
     /** 自动打开浏览器，需要node版本18.20.0以上 */
-    open: true,
+    // open: true,
   },
   plugins: [new ReactRefreshWebpackPlugin()],
+  /**
+   * npm run dev时控制台信息简化，只在运行出错的时候打印更多信息
+   */
+  stats: 'errors-only',
 });

@@ -1,0 +1,33 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  background-color: #fffefe;
+
+  .tabbar-wrapper {
+    display: flex;
+    align-items: center;
+    height: 56px;
+
+    .tabbar {
+      width: 100%;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .title {
+      .regular(10px, rgba(0, 0, 0, 0.4));
+
+      margin-top: 1px;
+
+      &.active {
+        color: rgba(0, 0, 0, 1);
+      }
+    }
+  }
+}

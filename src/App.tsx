@@ -1,61 +1,9 @@
-import React, { lazy, Suspense, useEffect, useState } from 'react';
-import * as styles from './index.module.less';
-import TestCssModule from './components/TestCssModule';
-import TestPxtovw from '@/components/TestPxtovw';
-import './app.css';
-import '@/assets/style/index.less';
-import { Button } from 'antd-mobile';
-
-// prefetch
-const PreFetchDemo = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "PreFetchDemo" */
-      /*webpackPrefetch: true*/
-      '@/components/PreFetchDemo'
-    )
-);
-// preload
-const PreloadDemo = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "PreloadDemo" */
-      /*webpackPreload: true*/
-      '@/components/PreloadDemo'
-    )
-);
+import './assets/style/index.less';
+import Router from './router';
+import React from 'react';
 
 function App() {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    console.log('====', styles);
-  }, []);
-
-  const onClick = () => {
-    setShow(true);
-  };
-  return (
-    <div>
-      <h2 className="ssss">app的ssss</h2>
-      <h2 onClick={onClick} className={styles.title}>
-        展示
-      </h2>
-      <Button color="success">按钮</Button>
-      <TestCssModule />
-      <TestPxtovw />
-      {/* show为true时加载组件 */}
-      {show && (
-        <>
-          <Suspense fallback={null}>
-            <PreloadDemo />
-          </Suspense>
-          <Suspense fallback={null}>
-            <PreFetchDemo />
-          </Suspense>
-        </>
-      )}
-    </div>
-  );
+  return <Router />;
 }
+
 export default App;
