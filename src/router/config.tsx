@@ -1,5 +1,5 @@
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
-import React, { lazy } from 'react';
+import { lazy } from 'react';
 import loginLoader from '@/router/loader/loginLoader';
 import demoStore from '@/store/Demo';
 

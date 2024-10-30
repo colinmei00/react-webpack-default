@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { TheButtonProps } from './interface';
 import * as styles from './TheButton.module.less';
 

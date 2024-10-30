@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { SafeArea, TabBar } from 'antd-mobile';
 import classnames from 'classnames';

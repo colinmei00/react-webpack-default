@@ -1,4 +1,3 @@
-import React from 'react';
 import * as styles from './Login.module.less';
 import { userLogin } from '@/api/login';
 

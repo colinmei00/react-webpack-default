@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import * as styles from './Content.module.less';
 import TestCssModule from '@/components/TestCssModule';
 import TestPxtovw from '@/components/TestPxtovw';

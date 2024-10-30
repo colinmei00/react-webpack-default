@@ -1,4 +1,3 @@
-import React from 'react';
 import * as styles from './User.module.less';
 import TheButton from '@/components/TheButton';
 import { DemoStoreProps } from './interface';

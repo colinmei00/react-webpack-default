@@ -1,7 +1,6 @@
 import { Button } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import './style.less';
-import React from 'react';
 
 export default function ErrorPage() {
   return (

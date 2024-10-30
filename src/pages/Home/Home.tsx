@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getBannerList } from '@/api/test';
 import * as styles from './Home.module.less';
 import TheButton from '@/components/TheButton';
