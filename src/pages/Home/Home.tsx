@@ -8,6 +8,7 @@ import { Toast } from 'antd-mobile';
  * 第一种引入store方式，可以通过对象解构出里面所有的store
  */
 import { useStore } from '@/store';
+import Content from '@/components/Content';
 
 export default function Home() {
   const { test } = useStore();
@@ -44,6 +45,7 @@ export default function Home() {
       >
         确定
       </TheButton>
+      <Content />
     </div>
   );
 }
