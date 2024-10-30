@@ -1,6 +1,7 @@
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 import React, { lazy } from 'react';
 import loginLoader from '@/router/loader/loginLoader';
+import demoStore from '@/store/Demo';
 
 /**
  * 访问任何理由页面都会请求container.js这个chunk，因为其是所有页面的父级
@@ -29,9 +30,7 @@ const ErrorPage = lazy(
   () => import(/* webpackChunkName:"not-found" */ '@/pages/404')
 );
 
-const User = lazy(
-  () => import(/* webpackChunkName:"user" */ '@/components/Content')
-);
+const User = lazy(() => import(/* webpackChunkName:"user" */ '@/pages/User'));
 
 export const routerData: RouteObject[] = [
   {
@@ -56,7 +55,7 @@ export const routerData: RouteObject[] = [
           },
           {
             path: 'user',
-            element: <User />,
+            element: <User demoState={demoStore} />,
           },
         ],
       },
