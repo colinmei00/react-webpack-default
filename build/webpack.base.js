@@ -162,6 +162,7 @@ module.exports = {
      */
     new webpack.DefinePlugin({
       'process.env.API_URL': JSON.stringify(process.env.API_URL),
+      'process.env.BASE_ENV': JSON.stringify(process.env.BASE_ENV),
     }),
   ],
   cache: {

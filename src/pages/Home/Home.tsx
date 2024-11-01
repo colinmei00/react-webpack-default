@@ -37,6 +37,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.title}>{text}</div>
+      <h2>{`当前BASE_ENV的值为：${process.env.BASE_ENV}`}</h2>
       <TheButton
         onClick={handleClickBtn}
         className={classnames(styles.submit, {
