@@ -1,15 +1,15 @@
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import VConsole from 'vconsole';
 
 /**
- * eruda移动端调试工具
- * 仅在开发环境且url中包含?eruda=true时初始化;
+ * (BASE_ENV为dev、test、gray环境)在url上拼接vconsole=true
  */
 if (
-  process.env.NODE_ENV === 'development' &&
-  /eruda=true/.test(window.location.search)
+  process.env.BASE_ENV !== 'production' &&
+  /vconsole=true/.test(window.location.search)
 ) {
-  import('eruda').then(eruda => eruda.default.init());
+  new VConsole();
 }
 
 const root = document.getElementById('root');
