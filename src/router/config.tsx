@@ -32,6 +32,8 @@ const ErrorPage = lazy(
 
 const User = lazy(() => import(/* webpackChunkName:"user" */ '@/pages/User'));
 
+const Task = lazy(() => import(/* webpackChunkName:"task" */ '@/pages/Task'));
+
 export const routerData: RouteObject[] = [
   {
     element: <PageTransition />,
@@ -58,6 +60,10 @@ export const routerData: RouteObject[] = [
             element: <User demoState={demoStore} />,
           },
         ],
+      },
+      {
+        path: 'task',
+        element: <Task />,
       },
     ],
     errorElement: <ErrorPage />,
