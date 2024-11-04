@@ -35,7 +35,7 @@ function CustomTabBar() {
       ),
     },
     {
-      key: '/detail',
+      key: '/detail/123',
       icon: (active: boolean) => (
         <img
           alt="详情"

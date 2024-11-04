@@ -1,7 +1,7 @@
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 import { lazy } from 'react';
-import loginLoader from '@/router/loader/loginLoader';
 import demoStore from '@/store/Demo';
+import detailLoader from '@/pages/Detail/Loader/detailLoader';
 
 /**
  * 访问任何理由页面都会请求container.js这个chunk，因为其是所有页面的父级
@@ -51,8 +51,11 @@ export const routerData: RouteObject[] = [
             element: <Home />,
           },
           {
-            path: 'detail',
-            loader: loginLoader,
+            path: 'detail/:detailId',
+            /**
+             * 需要等detailLoader完全加载完毕后才会显示detail页面的路由，有点同步的感觉
+             */
+            loader: detailLoader,
             element: <Detail />,
           },
           {
