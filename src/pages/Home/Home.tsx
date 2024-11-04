@@ -37,7 +37,9 @@ export default function Home() {
   };
 
   const goToTaskList = () => {
-    navigate('/task');
+    navigate('/task', {
+      state: { name: 'jack' },
+    });
   };
 
   return (

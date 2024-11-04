@@ -20,7 +20,11 @@ async function loginLoader() {
     return redirect('/login');
   }
 
-  return null;
+  /**
+   * 返回用户信息，可通过useLoaderData获取
+   * 用法：const { user } = useLoaderData();
+   */
+  return { user };
 }
 
 export default loginLoader;
