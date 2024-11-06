@@ -61,7 +61,7 @@ module.exports = {
          * 只对项目src文件的ts,tsx进行loader解析
          */
         include: [path.resolve(__dirname, '../src')],
-        test: /.(ts|tsx)$/,
+        test: /\.(ts|tsx|js)$/,
         /**
          * thread-loader：建议大型项目使用，因为开启该功能需要耗费600ms；
          * babel-loader：可在babel.config.js自定义配置规则；
